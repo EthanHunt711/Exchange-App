@@ -1,6 +1,11 @@
+<script setup lang="ts">
+import QuickConvertWidget from "../widgets/QuickConvertWidget.vue";
+</script>
+
 <template>
-  <div>
-    <h1 class="text-2xl font-bold mb-4">Convert Page</h1>
-    <!-- List of current rates -->
+  <!-- Quick Convert Widget -->
+  <div class="mb-8">
+    <!-- You could use your own component or code for this -->
+    <QuickConvertWidget />
   </div>
 </template>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import QuickConvertWidget from "../widgets/QuickConvertWidget.vue";
 import ExchangeRatesTable from "../widgets/ExchangeRatesTable.vue";
 import RecentTrendsChart from "../widgets/RecentTrendsChart.vue";
 </script>
@@ -9,12 +8,6 @@ import RecentTrendsChart from "../widgets/RecentTrendsChart.vue";
     <p class="text-lg text-gray-600 mb-6">
       Get the latest exchange rates, convert currencies, and view trends!
     </p>
-
-    <!-- Quick Convert Widget -->
-    <div class="mb-8">
-      <!-- You could use your own component or code for this -->
-      <QuickConvertWidget />
-    </div>
 
     <!-- Main Exchange Rates Table -->
     <div class="mb-8">
