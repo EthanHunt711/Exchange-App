@@ -16,6 +16,8 @@ const popularCurrencies = [
   "NZD",
 ];
 
+const types = ["deposit", "withdraw", "exchange"];
+
 const emit = defineEmits<{
   (
     e: "add",
@@ -25,20 +27,22 @@ const emit = defineEmits<{
       rate: number;
       date_bought: string;
       details?: string;
+      type: string; // required, can be used to specify transaction type
     }
   ): void;
 }>();
 
-function getTodayDate() {
+const getTodayDate = () => {
   const now = new Date();
   const yyyy = now.getFullYear();
   const mm = String(now.getMonth() + 1).padStart(2, "0");
   const dd = String(now.getDate()).padStart(2, "0");
   return `${yyyy}-${mm}-${dd}`;
-}
+};
 
 const currency = ref("USD");
 const amount = ref<number | null>(null);
+const type = ref<string>("deposit");
 const date_bought = ref<string>(getTodayDate());
 const details = ref("");
 const adding = ref(false);
@@ -68,6 +72,7 @@ const add = async () => {
       rate: rateVal,
       date_bought: date_bought.value,
       details: details.value || undefined,
+      type: type.value, // or any other type you want to set
     });
   } catch (e: any) {
     error.value = e.message || "Failed to fetch today's rate";
@@ -94,6 +99,16 @@ const add = async () => {
           >
             <option v-for="cur in popularCurrencies" :key="cur" :value="cur">
               {{ cur }}
+            </option>
+          </select>
+          <select
+            v-model="type"
+            class="p-2 border rounded min-w-[110px] bg-neutral-900"
+            required
+          >
+            <option disabled value="">Select type</option>
+            <option v-for="t in types" :key="t" :value="t">
+              {{ t.charAt(0).toUpperCase() + t.slice(1) }}
             </option>
           </select>
           <input
